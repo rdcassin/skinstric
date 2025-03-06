@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1A1B1C;
 }
 
 @theme inline {
@@ -12,15 +12,48 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.custom-dotted-border-sm {
+  background-image: linear-gradient(
+    to right,
+    rgba(0,0,0,0.4) 2px,
+    transparent 1px
+  );
+  background-size: 8px 2px;
+  background-repeat: repeat-x;
+  height: 2px;
+}
+
+.custom-dotted-border-md {
+  background-image: linear-gradient(
+    to right,
+    rgba(0,0,0,0.3) 2px,
+    transparent 2px
+  );
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+  height: 2px;
+}
+
+.custom-dotted-border-lg {
+  background-image: linear-gradient(
+    to right,
+    rgba(0,0,0,0.15) 2px,
+    transparent 2px
+  );
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+  height: 2px;
 }
