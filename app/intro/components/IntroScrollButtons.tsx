@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import BackButton from "../../../public/back.svg";
-import ProceedButton from "../../../public/proceed.svg";
+import BackButton from "@/public/back.svg";
+import ProceedButton from "@/public/back.svg";
 import { useIntroStore } from "@/store/use-intro-store";
 
 const IntroScrollButtons = () => {
@@ -17,8 +17,7 @@ const IntroScrollButtons = () => {
           <img src={BackButton.src} alt="BackButton" />
         </button>
       </Link>
-      {/* Need to updated the proceed button link href to the next page */}
-      <Link href="/">
+      <Link href="/intro/photo-upload">
         <button
           className={`cursor-pointer opacity-0 transition-opacity ease-in-out duration-300 ${
             !validLocation ? "opacity-0" : "opacity-100"

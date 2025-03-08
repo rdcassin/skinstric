@@ -7,25 +7,24 @@ import { useState, KeyboardEventHandler } from "react";
 
 const IntroInput = () => {
   const [custName, setCustName] = useState("");
-  const { validName, setValidName, validLocation, setValidLocation } =
-    useIntroStore();
+  const { validName, setValidName, setValidLocation } = useIntroStore();
   const [pTextNameSwitch, setPTextNameSwitch] = useState(false);
   const [location, setLocation] = useState("");
   const [pTextLocSwitch, setPTextLocSwitch] = useState(false);
 
   const sendCustomerData = async () => {
-    // try {
-    //   const { data } = await axios.post(
-    //     "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseOne",
-    //     {
-    //       name: custName,
-    //       location: location,
-    //     }
-    //   );
-    //   alert(data.SUCCUSS);
-    // } catch {
-    //   alert("System error, please try again later");
-    // }
+    try {
+      const { data } = await axios.post(
+        "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseOne",
+        {
+          name: custName,
+          location: location,
+        }
+      );
+      alert(data.success);
+    } catch {
+      alert("System error, please try again later");
+    }
   };
 
   const inputValidation = (inputName: string) => {

@@ -102,3 +102,35 @@ export const DiagonalDottedDivCenter = ({
     </>
   );
 };
+
+export const DiagonalDottedDiv = ({ children }: DiagonalDottedDivProps) => {
+  return (
+    <>
+      <div className="absolute">
+        <div className="relative w-100 h-100 flex items-center justify-center">
+          <div className="absolute w-[70%] h-0 custom-dotted-border-sm top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
+          <div className="absolute w-[70%] h-0 custom-dotted-border-sm top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
+          <div className="absolute w-[70%] h-0 custom-dotted-border-sm top-1/4 left-1/4 -translate-x-1/2 -rotate-45" />
+          <div className="absolute w-[70%] h-0 custom-dotted-border-sm top-3/4 left-1/4 -translate-x-1/2 rotate-45" />
+          {children}
+        </div>
+      </div>
+      <div className="absolute">
+        <div className="relative w-110 h-110 flex items-center justify-center">
+          <div className="absolute w-[70%] h-0 custom-dotted-border-md top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
+          <div className="absolute w-[70%] h-0 custom-dotted-border-md top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
+          <div className="absolute w-[70%] h-0 custom-dotted-border-md top-1/4 left-1/4 -translate-x-1/2 -rotate-45" />
+          <div className="absolute w-[70%] h-0 custom-dotted-border-md top-3/4 left-1/4 -translate-x-1/2 rotate-45" />
+        </div>
+      </div>
+      <div className="absolute">
+        <div className="relative w-120 h-120 flex items-center justify-center">
+          <div className="absolute w-[70%] h-0 custom-dotted-border-lg top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
+          <div className="absolute w-[70%] h-0 custom-dotted-border-lg top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
+          <div className="absolute w-[70%] h-0 custom-dotted-border-lg top-1/4 left-1/4 -translate-x-1/2 -rotate-45" />
+          <div className="absolute w-[70%] h-0 custom-dotted-border-lg top-3/4 left-1/4 -translate-x-1/2 rotate-45" />
+        </div>
+      </div>
+    </>
+  );
+};
