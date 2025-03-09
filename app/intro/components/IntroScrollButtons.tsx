@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import BackButton from "@/public/back.svg";
-import ProceedButton from "@/public/back.svg";
+import ProceedButton from "@/public/proceed.svg";
 import { useIntroStore } from "@/store/use-intro-store";
 
 const IntroScrollButtons = () => {
@@ -17,7 +17,7 @@ const IntroScrollButtons = () => {
           <img src={BackButton.src} alt="BackButton" />
         </button>
       </Link>
-      <Link href="/intro/photo-upload">
+      <Link href="/intro/photoUpload">
         <button
           className={`cursor-pointer opacity-0 transition-opacity ease-in-out duration-300 ${
             !validLocation ? "opacity-0" : "opacity-100"

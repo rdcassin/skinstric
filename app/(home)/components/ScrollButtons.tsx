@@ -10,9 +10,13 @@ import TakeTestHover from "../../../public/takeTestHover.svg";
 import { useHoverStore } from "@/store/use-hover-store";
 import Link from "next/link";
 
-export const ScrollButtonLeft = () => {
+interface ScrollButtonProps {
+  size: number;
+}
+
+export const ScrollButtonLeft = ({ size }: ScrollButtonProps) => {
   return (
-    <DiagonalDottedDivLeft>
+    <DiagonalDottedDivLeft innerDiamondSize={size}>
       <button
         className="absolute top-1/2 transform -translate-y-1/2 left-[calc(50%+32px)] cursor-pointer"
         onClick={() => {}}
@@ -27,11 +31,11 @@ export const ScrollButtonLeft = () => {
   );
 };
 
-export const ScrollButtonRight = () => {
+export const ScrollButtonRight = ({ size }: ScrollButtonProps) => {
   const { isHovering, setIsHovering } = useHoverStore();
 
   return (
-    <DiagonalDottedDivRight>
+    <DiagonalDottedDivRight innerDiamondSize={size}>
       <div className="absolute top-1/2 transform -translate-y-1/2 right-[calc(50%+32px)] flex">
         <Link href="/intro">
           <button

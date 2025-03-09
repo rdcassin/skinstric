@@ -1,11 +1,15 @@
 "use client";
 
-import { DiagonalDottedDivCenter } from "@/app/components/DiagonalDottedDiv";
+import { DiagonalDottedDiv } from "@/app/components/DiagonalDottedDiv";
 import { useIntroStore } from "@/store/use-intro-store";
 import axios from "axios";
 import { useState, KeyboardEventHandler } from "react";
 
-const IntroInput = () => {
+interface IntroInputProps {
+  size: number;
+}
+
+const IntroInput = ({ size }: IntroInputProps) => {
   const [custName, setCustName] = useState("");
   const { validName, setValidName, setValidLocation } = useIntroStore();
   const [pTextNameSwitch, setPTextNameSwitch] = useState(false);
@@ -23,7 +27,7 @@ const IntroInput = () => {
       );
       alert(data.success);
     } catch {
-      alert("System error, please try again later");
+      alert("System error, please try again later.");
     }
   };
 
@@ -39,7 +43,7 @@ const IntroInput = () => {
         setCustName(target.value);
         setValidName(true);
       } else {
-        alert("Please enter a valid name");
+        alert("Please enter a valid name.");
       }
     }
   };
@@ -76,7 +80,7 @@ const IntroInput = () => {
   };
 
   return (
-    <DiagonalDottedDivCenter>
+    <DiagonalDottedDiv innerDiamondSize={size}>
       <>
         <div
           className={`absolute transition-opacity ease-in-out duration-500 ${
@@ -149,7 +153,7 @@ const IntroInput = () => {
           </div>
         </div>
       </>
-    </DiagonalDottedDivCenter>
+    </DiagonalDottedDiv>
   );
 };
 

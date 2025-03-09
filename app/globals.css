@@ -25,7 +25,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.custom-dotted-border-sm {
+.custom-dotted-border-inner {
   background-image: linear-gradient(
     to right,
     rgba(0,0,0,0.4) 2px,
@@ -36,7 +36,7 @@ body {
   height: 2px;
 }
 
-.custom-dotted-border-md {
+.custom-dotted-border-middle {
   background-image: linear-gradient(
     to right,
     rgba(0,0,0,0.3) 2px,
@@ -47,7 +47,7 @@ body {
   height: 2px;
 }
 
-.custom-dotted-border-lg {
+.custom-dotted-border-outer {
   background-image: linear-gradient(
     to right,
     rgba(0,0,0,0.15) 2px,
@@ -56,4 +56,23 @@ body {
   background-size: 8px 1px;
   background-repeat: repeat-x;
   height: 2px;
+}
+
+.custom-line {
+  background-color: rgba(0,0,0,1);
+  height: 0.5px;
+}
+
+.custom-line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 5px;
+  height:5px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: white;
+  background-clip: padding-box;
 }

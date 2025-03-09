@@ -13,8 +13,8 @@ export const Home = () => {
     <div className="w-screen h-screen overflow-hidden relative">
       <LandingNav />
       <LandingContent />
-      <ScrollButtonLeft />
-      <ScrollButtonRight />
+      <ScrollButtonLeft size={600} />
+      <ScrollButtonRight size={600} />
     </div>
   );
 };
