@@ -11,7 +11,7 @@ interface IntroInputProps {
 
 const IntroInput = ({ size }: IntroInputProps) => {
   const [custName, setCustName] = useState("");
-  const { validName, setValidName, setValidLocation } = useIntroStore();
+  const { validName, setValidName, validLocation, setValidLocation } = useIntroStore();
   const [pTextNameSwitch, setPTextNameSwitch] = useState(false);
   const [location, setLocation] = useState("");
   const [pTextLocSwitch, setPTextLocSwitch] = useState(false);
@@ -64,7 +64,7 @@ const IntroInput = ({ size }: IntroInputProps) => {
       if (inputValidation(target.value)) {
         setLocation(target.value);
         setValidLocation(true);
-        sendCustomerData();
+        // sendCustomerData();
       } else {
         alert("Please enter a valid location");
       }
@@ -83,7 +83,7 @@ const IntroInput = ({ size }: IntroInputProps) => {
     <DiagonalDottedDiv innerDiamondSize={size}>
       <>
         <div
-          className={`absolute transition-opacity ease-in-out duration-500 ${
+          className={`absolute transition-opacity ease-in-out duration-100 ${
             !validName ? "opacity-100" : "opacity-0"
           }`}
         >

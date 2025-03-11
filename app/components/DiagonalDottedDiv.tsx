@@ -101,8 +101,6 @@ export const DiagonalDottedDiv = ({
   const middleSize = (innerDiamondSize + increment).toString();
   const outerSize = (innerDiamondSize + increment * 2).toString();
 
-  console.log(increment, innerSize, middleSize, outerSize)
-
   return (
     <div
       className="relative flex items-center justify-center z-10" style={{ width: `${outerSize}px`, height: `${outerSize}px` }}
