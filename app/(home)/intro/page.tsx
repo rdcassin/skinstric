@@ -32,8 +32,9 @@ const IntroPage = () => {
         if (validName && validLocation) {
           setValidLocation(false);
           setUserLocation("");
+          setOpacity(false);
+        } else if (validName) {
           setValidName(false);
-          setUserName("");
         } else {
           router.push("/");
         }
@@ -65,7 +66,7 @@ const IntroPage = () => {
 
   useEffect(() => {
     if (validLocation) {
-      setOpacity(false);
+      setOpacity(true);
     }
   }, [validLocation]);
 

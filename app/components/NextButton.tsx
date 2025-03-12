@@ -15,7 +15,7 @@ const NextButton = ({ label, nextAction, invertImage }: NextButtonProps) => {
   return (
     <button
       className={`cursor-pointer flex flex-row transition-opacity ease-in-out duration-300 ${
-        opacity ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"
+        opacity ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
       onClick={() => nextAction()}
     >

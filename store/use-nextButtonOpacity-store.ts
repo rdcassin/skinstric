@@ -6,6 +6,6 @@ interface nextButtonOpacityState {
 };
 
 export const useNextButtonOpacityStore = create<nextButtonOpacityState>((set) => ({
-  opacity: true,
+  opacity: false,
   setOpacity: (opacity) => set({ opacity }),
 }));
