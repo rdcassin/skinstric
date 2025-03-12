@@ -64,7 +64,6 @@ const IntroPage = () => {
   };
 
   useEffect(() => {
-    setOpacity(true);
     if (validLocation) {
       setOpacity(false);
     }
@@ -76,7 +75,7 @@ const IntroPage = () => {
         <LogoBar />
         <Subtitle text="TO START ANALYSIS" />
       </div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <UserInfoInput size={600} />
       </div>
       <Bar
