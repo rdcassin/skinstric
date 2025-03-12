@@ -4,6 +4,8 @@ import Bar from "@/app/components/Bar";
 import ImageCaptureAction from "@/app/components/ImageCaptureAction";
 import LogoBar from "@/app/components/LogoBar";
 import { BarProps } from "@/app/components/types";
+import { useImageSourceStore } from "@/store/use-imageSource-store";
+import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
 import { usePreviewStore } from "@/store/use-preview-store";
 import { useUserInfoStore } from "@/store/use-userInfo-store";
 import axios from "axios";
@@ -13,12 +15,17 @@ import { useEffect } from "react";
 const ImagePreviewPage = () => {
   const { previewUrl, setPreviewUrl } = usePreviewStore();
   const { userImage, setUserImage, userData, setUserData } = useUserInfoStore();
+  const { selectCapture, setSelectCapture, selectUpload, setSelectUpload, setFadeCapture, setFadeUpload } = useImageSourceStore();
+  const { setOpacity } = useNextButtonOpacityStore();
   const router = useRouter();
   const barComps: BarProps = {
     subComponent1: {
       label: "BACK",
       prevAction: () => {
-        router.push("/intro/photoUpload");
+        if (selectUpload) {
+          setFadeCapture(false);
+          router.push("/intro/photoUpload");
+        };
       },
       invertImage: true,
     },
@@ -28,7 +35,10 @@ const ImagePreviewPage = () => {
     },
     subComponent3: {
       label: "PROCEED",
-      nextAction: () => postPicture(),
+      nextAction: () => {
+        // postPicture();
+        router.push("/analysis");
+      },
       invertImage: true,
     },
   };
@@ -40,7 +50,7 @@ const ImagePreviewPage = () => {
       const { data } = await axios.post(
         "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
         {
-          image: userImage
+          image: userImage,
         }
       );
       setUserData(data.data);

@@ -10,12 +10,12 @@ interface PhotoInputProps {
 }
 
 export const PhotoCameraInput = ({ size }: PhotoInputProps) => {
-  const { selectCapture } = useImageSourceStore();
+  const { fadeCapture } = useImageSourceStore();
   return (
     <DiagonalDottedDiv innerDiamondSize={size}>
       <div
         className={`relative w-full h-full flex justify-center items-center ${
-          selectCapture ? "opacity-100" : "opacity-50"
+          fadeCapture ? "opacity-50" : "opacity-100"
         }`}
       >
         <ImageCaptureOption>
@@ -31,12 +31,12 @@ export const PhotoCameraInput = ({ size }: PhotoInputProps) => {
 };
 
 export const PhotoUploadInput = ({ size }: PhotoInputProps) => {
-  const { selectUpload } = useImageSourceStore();
+  const { fadeUpload } = useImageSourceStore();
   return (
     <DiagonalDottedDiv innerDiamondSize={size}>
       <div
         className={`relative w-full h-full flex justify-center items-center ${
-          selectUpload ? "opacity-100" : "opacity-50"
+          fadeUpload ? "opacity-50" : "opacity-100"
         }`}
       >
         <div className="custom-line absolute w-[85px] h-0 bottom-41/128 left-23/128 translate-x-23/128 -rotate-225 z-40"></div>

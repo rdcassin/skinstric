@@ -43,7 +43,8 @@ const IntroPage = () => {
     subComponent3: {
       label: "PROCEED",
       nextAction: () => {
-        sendCustomerData();
+        // sendCustomerData();
+        setOpacity(false);
         router.push("/intro/photoUpload");
       },
     },

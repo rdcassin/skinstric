@@ -9,26 +9,31 @@ import {
 import Bar from "@/app/components/Bar";
 import { BarProps } from "@/app/components/types";
 import Subtitle from "@/app/components/Subtitle";
+import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
+import { useImageSourceStore } from "@/store/use-imageSource-store";
 
 const PhotoUpload = () => {
-
+  const { selectCapture, selectUpload, setFadeCapture, setFadeUpload } = useImageSourceStore();
+  const { setOpacity } = useNextButtonOpacityStore();
   const router = useRouter();
   const barComps: BarProps = {
     subComponent1: {
       label: "BACK",
       prevAction: () => {
+        setOpacity(true);
         router.push("/intro");
       },
     },
     subComponent3: {
       label: "PROCEED",
       nextAction: () => {
+        if (selectUpload) {
+          setFadeCapture(true);
+        }
         router.push("/intro/photoUpload/imagePreview");
       },
     },
   };
-
-
   
   return (
     <div className="flex flex-col justify-between h-screen">

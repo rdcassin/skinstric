@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { usePreviewStore } from "@/store/use-preview-store";
 import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
 import { useUserInfoStore } from "@/store/use-userInfo-store";
+import { useImageSourceStore } from "@/store/use-imageSource-store";
 
 interface ImageUploadOptionAndActionProps {
   children: ReactNode;
@@ -13,6 +14,7 @@ interface ImageUploadOptionAndActionProps {
 const ImageUploadOptionAndAction = ({ children }: ImageUploadOptionAndActionProps) => {
   const { setUserImage } = useUserInfoStore();
   const { setPreviewUrl } = usePreviewStore();
+  const { setSelectCapture, setSelectUpload, setFadeCapture, setFadeUpload } = useImageSourceStore();
   const { setOpacity } = useNextButtonOpacityStore();
   const router = useRouter();
 
@@ -25,10 +27,12 @@ const ImageUploadOptionAndAction = ({ children }: ImageUploadOptionAndActionProp
       const file = (e.target as HTMLInputElement).files?.[0];
       if (file) {
         setUserImage(file);
+        setOpacity(true);
+        setSelectUpload(true);
+        setFadeCapture(true);
         const reader = new FileReader();
         reader.onload = (e) => {
           setPreviewUrl(e.target?.result as string);
-          setOpacity(false);
         };
         reader.readAsDataURL(file);
         router.push("/intro/photoUpload/imagePreview");

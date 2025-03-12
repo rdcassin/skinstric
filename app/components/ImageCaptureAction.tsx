@@ -6,23 +6,27 @@ import ImageCaptureButton from "./ImageCaptureButton";
 import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
 import { useImageSourceStore } from "@/store/use-imageSource-store";
 import LoadCamera from "./LoadCamera";
+import { useRouter } from "next/navigation";
 
 const ImageCaptureAction = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const { selectCapture, setSelectCapture } = useImageSourceStore();
+  const { selectCapture, setSelectCapture, selectUpload, setSelectUpload, setFadeCapture, setFadeUpload, setCamPerm } = useImageSourceStore();
   const { setOpacity } = useNextButtonOpacityStore();
   const { previewUrl, setPreviewUrl } = usePreviewStore();
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const router = useRouter();
 
   const handleOpenCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      setSelectCapture(false);
+      setCamPerm(true);
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
     } catch (error) {
+      setFadeUpload(false);
+      router.push("/intro/photoUpload");
       console.error("Camera access error:", error);
     }
   };
