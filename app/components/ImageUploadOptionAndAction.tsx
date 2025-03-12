@@ -3,13 +3,17 @@
 import { ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { usePreviewStore } from "@/store/use-preview-store";
+import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
+import { useUserInfoStore } from "@/store/use-userInfo-store";
 
-interface ImageUploadProps {
+interface ImageUploadOptionAndActionProps {
   children: ReactNode;
 }
 
-const ImageUpload = ({ children }: ImageUploadProps) => {
+const ImageUploadOptionAndAction = ({ children }: ImageUploadOptionAndActionProps) => {
+  const { setUserImage } = useUserInfoStore();
   const { setPreviewUrl } = usePreviewStore();
+  const { setOpacity } = useNextButtonOpacityStore();
   const router = useRouter();
 
   const handleImageUpload = () => {
@@ -20,9 +24,11 @@ const ImageUpload = ({ children }: ImageUploadProps) => {
     input.onchange = (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (file) {
+        setUserImage(file);
         const reader = new FileReader();
         reader.onload = (e) => {
-          setPreviewUrl(e.target.result as string);
+          setPreviewUrl(e.target?.result as string);
+          setOpacity(false);
         };
         reader.readAsDataURL(file);
         router.push("/intro/photoUpload/imagePreview");
@@ -41,4 +47,4 @@ const ImageUpload = ({ children }: ImageUploadProps) => {
   );
 };
 
-export default ImageUpload;
+export default ImageUploadOptionAndAction;

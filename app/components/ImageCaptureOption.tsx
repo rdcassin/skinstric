@@ -1,28 +1,17 @@
 "use client";
 
 import { useImageSourceStore } from "@/store/use-imageSource-store";
-import { useState, useRef, ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { useState, ReactNode } from "react";
 
-interface ImageCaptureProps {
+interface ImageCaptureOptionProps {
   children: ReactNode;
 }
 
-const ImageCapture = ({ children }: ImageCaptureProps) => {
+const ImageCaptureOption = ({ children }: ImageCaptureOptionProps) => {
   const [askPermissions, setAskPermissions] = useState<boolean>(false);
   const { setSelectCapture, setSelectUpload } = useImageSourceStore();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const handleOpenCamera = async () => {
-    setAskPermissions(false);
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-      }
-    } catch (error) {
-      console.error("Camera access error:", error);
-    }
-  };
+  const router = useRouter();
 
   const handleOnSelected = () => {
     setSelectCapture(true);
@@ -33,6 +22,10 @@ const ImageCapture = ({ children }: ImageCaptureProps) => {
   const handleDeny = () => {
     setSelectUpload(true);
     setAskPermissions(false);
+  };
+
+  const handleAllow = () => {
+    router.push("/intro/photoUpload/imagePreview");
   };
 
   return (
@@ -49,10 +42,7 @@ const ImageCapture = ({ children }: ImageCaptureProps) => {
             <button className="py-2 px-4 cursor-pointer" onClick={handleDeny}>
               DENY
             </button>
-            <button
-              className="py-2 px-4 cursor-pointer"
-              onClick={handleOpenCamera}
-            >
+            <button className="py-2 px-4 cursor-pointer" onClick={handleAllow}>
               ALLOW
             </button>
           </div>
@@ -62,4 +52,4 @@ const ImageCapture = ({ children }: ImageCaptureProps) => {
   );
 };
 
-export default ImageCapture;
+export default ImageCaptureOption;

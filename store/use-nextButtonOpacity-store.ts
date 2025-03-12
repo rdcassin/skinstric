@@ -5,7 +5,7 @@ interface nextButtonOpacityState {
   setOpacity: (opacity: boolean) => void;
 };
 
-export const useOpacityStore = create<nextButtonOpacityState>((set) => ({
+export const useNextButtonOpacityStore = create<nextButtonOpacityState>((set) => ({
   opacity: true,
   setOpacity: (opacity) => set({ opacity }),
 }));

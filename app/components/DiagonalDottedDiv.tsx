@@ -4,11 +4,13 @@ import { ReactNode } from "react";
 interface DiagonalDottedDivProps {
   children: ReactNode;
   innerDiamondSize?: number;
+  incrementSize?: number | undefined;
+  rotateDegrees?: number;
 }
 
 export const DiagonalDottedDivLeft = ({
   children,
-  innerDiamondSize = 150,
+  innerDiamondSize = 600,
 }: DiagonalDottedDivProps) => {
   const { isHovering } = useHoverStore();
 
@@ -21,7 +23,8 @@ export const DiagonalDottedDivLeft = ({
       }`}
     >
       <div
-        className="relative w-${innerSize} h-${innerSize} flex items-center justify-center" style={{ width: `${innerSize}px`, height: `${innerSize}px` }}
+        className="relative w-${innerSize} h-${innerSize} flex items-center justify-center"
+        style={{ width: `${innerSize}px`, height: `${innerSize}px` }}
       >
         <div className="absolute w-[70%] custom-dotted-border-inner top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
         <div className="absolute w-[70%] custom-dotted-border-inner top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
@@ -35,11 +38,12 @@ export const DiagonalDottedDivLeft = ({
 
 export const DiagonalDottedDivRight = ({
   children,
-  innerDiamondSize = 150,
+  innerDiamondSize = 600,
+  incrementSize = undefined,
 }: DiagonalDottedDivProps) => {
   const { isHovering } = useHoverStore();
 
-  const increment = innerDiamondSize * 0.2 - 40;
+  const increment = incrementSize || innerDiamondSize * 0.2 - 40;
 
   const innerSize = innerDiamondSize.toString();
   const middleSize = (innerDiamondSize + increment).toString();
@@ -49,7 +53,8 @@ export const DiagonalDottedDivRight = ({
     <>
       <div className="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-30">
         <div
-          className="relative flex items-center justify-center" style={{ width: `${innerSize}px`, height: `${innerSize}px` }}
+          className="relative flex items-center justify-center"
+          style={{ width: `${innerSize}px`, height: `${innerSize}px` }}
         >
           <div className="absolute w-[70%] custom-dotted-border-inner top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
           <div className="absolute w-[70%] custom-dotted-border-inner top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
@@ -64,7 +69,8 @@ export const DiagonalDottedDivRight = ({
         }`}
       >
         <div
-          className="relative flex items-center justify-center" style={{ width: `${middleSize}px`, height: `${middleSize}px` }}
+          className="relative flex items-center justify-center"
+          style={{ width: `${middleSize}px`, height: `${middleSize}px` }}
         >
           <div className="absolute w-[70%] custom-dotted-border-middle top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
           <div className="absolute w-[70%] custom-dotted-border-middle top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
@@ -78,7 +84,8 @@ export const DiagonalDottedDivRight = ({
         }`}
       >
         <div
-          className="relative flex items-center justify-center" style={{ width: `${outerSize}px`, height: `${outerSize}px` }}
+          className="relative flex items-center justify-center"
+          style={{ width: `${outerSize}px`, height: `${outerSize}px` }}
         >
           <div className="absolute w-[70%] custom-dotted-border-outer top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
           <div className="absolute w-[70%] custom-dotted-border-outer top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
@@ -92,10 +99,11 @@ export const DiagonalDottedDivRight = ({
 
 export const DiagonalDottedDiv = ({
   children,
-  innerDiamondSize = 100,
+  innerDiamondSize = 400,
+  incrementSize = undefined,
+  rotateDegrees = 0,
 }: DiagonalDottedDivProps) => {
-
-  const increment = innerDiamondSize * 0.2 - 40;
+  const increment = incrementSize || innerDiamondSize * 0.2 - 40;
 
   const innerSize = innerDiamondSize.toString();
   const middleSize = (innerDiamondSize + increment).toString();
@@ -103,27 +111,47 @@ export const DiagonalDottedDiv = ({
 
   return (
     <div
-      className="relative flex items-center justify-center z-10" style={{ width: `${outerSize}px`, height: `${outerSize}px` }}
+      className="relative flex items-center justify-center z-10"
+      style={{
+        width: `${outerSize}px`,
+        height: `${outerSize}px`,
+        transform: `rotate(-${rotateDegrees}deg)`,
+      }}
     >
       <div className="absolute w-[70%] custom-dotted-border-outer top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
       <div className="absolute w-[70%] custom-dotted-border-outer top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
       <div className="absolute w-[70%] custom-dotted-border-outer top-1/4 left-1/4 -translate-x-1/2 -rotate-45" />
       <div className="absolute w-[70%] custom-dotted-border-outer top-3/4 left-1/4 -translate-x-1/2 rotate-45" />
       <div
-        className="relative flex items-center justify-center z-20" style={{ width: `${middleSize}px`, height: `${middleSize}px` }}
+        className="relative flex items-center justify-center z-20"
+        style={{
+          width: `${middleSize}px`,
+          height: `${middleSize}px`,
+          transform: `rotate(${rotateDegrees}deg)`,
+        }}
       >
         <div className="absolute w-[70%] custom-dotted-border-middle top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
         <div className="absolute w-[70%] custom-dotted-border-middle top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
         <div className="absolute w-[70%] custom-dotted-border-middle top-1/4 left-1/4 -translate-x-1/2 -rotate-45" />
         <div className="absolute w-[70%] custom-dotted-border-middle top-3/4 left-1/4 -translate-x-1/2 rotate-45" />
         <div
-          className="relative flex items-center justify-center z-30" style={{ width: `${innerSize}px`, height: `${innerSize}px` }}
+          className="relative flex items-center justify-center z-30"
+          style={{
+            width: `${innerSize}px`,
+            height: `${innerSize}px`,
+            transform: `rotate(${rotateDegrees}deg)`,
+          }}
         >
           <div className="absolute w-[70%] custom-dotted-border-inner top-1/4 left-3/4 -translate-x-1/2 rotate-45" />
           <div className="absolute w-[70%] custom-dotted-border-inner top-3/4 left-3/4 -translate-x-1/2 -rotate-45" />
           <div className="absolute w-[70%] custom-dotted-border-inner top-1/4 left-1/4 -translate-x-1/2 -rotate-45" />
           <div className="absolute w-[70%] custom-dotted-border-inner top-3/4 left-1/4 -translate-x-1/2 rotate-45" />
-          {children}
+          <div
+            className="h-full w-full z-40 relative flex items-center justify-center"
+            style={{ transform: `rotate(-${rotateDegrees}deg)` }}
+          >
+            {children}
+          </div>
         </div>
       </div>
     </div>

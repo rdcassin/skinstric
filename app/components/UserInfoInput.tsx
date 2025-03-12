@@ -1,35 +1,17 @@
 "use client";
 
 import { DiagonalDottedDiv } from "@/app/components/DiagonalDottedDiv";
-import { useIntroStore } from "@/store/use-intro-store";
-import axios from "axios";
+import { useUserInfoStore } from "@/store/use-userInfo-store";
 import { useState, KeyboardEventHandler } from "react";
 
-interface IntroInputProps {
+interface UserInfoInputProps {
   size: number;
 }
 
-const IntroInput = ({ size }: IntroInputProps) => {
-  const [custName, setCustName] = useState("");
-  const { validName, setValidName, validLocation, setValidLocation } = useIntroStore();
-  const [pTextNameSwitch, setPTextNameSwitch] = useState(false);
-  const [location, setLocation] = useState("");
-  const [pTextLocSwitch, setPTextLocSwitch] = useState(false);
-
-  const sendCustomerData = async () => {
-    try {
-      const { data } = await axios.post(
-        "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseOne",
-        {
-          name: custName,
-          location: location,
-        }
-      );
-      alert(data.success);
-    } catch {
-      alert("System error, please try again later.");
-    }
-  };
+const UserInfoInput = ({ size }: UserInfoInputProps) => {
+  const { userName, setUserName, userLocation, setUserLocation, validName, setValidName, setValidLocation } = useUserInfoStore();
+  const [pTextNameSwitch, setPTextNameSwitch] = useState<boolean>(false);
+  const [pTextLocSwitch, setPTextLocSwitch] = useState<boolean>(false);
 
   const inputValidation = (inputName: string) => {
     const regex = /^[a-zA-Z\s'-]+$/;
@@ -40,7 +22,7 @@ const IntroInput = ({ size }: IntroInputProps) => {
     if (e.key === "Enter") {
       const target = e.target as HTMLInputElement;
       if (inputValidation(target.value)) {
-        setCustName(target.value);
+        setUserName(target.value);
         setValidName(true);
       } else {
         alert("Please enter a valid name.");
@@ -62,9 +44,8 @@ const IntroInput = ({ size }: IntroInputProps) => {
     if (e.key === "Enter") {
       const target = e.target as HTMLInputElement;
       if (inputValidation(target.value)) {
-        setLocation(target.value);
+        setUserLocation(target.value);
         setValidLocation(true);
-        // sendCustomerData();
       } else {
         alert("Please enter a valid location");
       }
@@ -83,7 +64,7 @@ const IntroInput = ({ size }: IntroInputProps) => {
     <DiagonalDottedDiv innerDiamondSize={size}>
       <>
         <div
-          className={`absolute transition-opacity ease-in-out duration-100 ${
+          className={`flex transition-opacity ease-in-out duration-100 items-center justify-center ${
             !validName ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -110,6 +91,7 @@ const IntroInput = ({ size }: IntroInputProps) => {
               className="text-center text-6xl tracking-[-0.07em] placeholder-[#1A1B1C] underline underline-offset-6 decoration-1 outline-none focus:placeholder:opacity-0"
               type="text"
               placeholder="Introduce Yourself"
+              defaultValue={userName || ""}
               onKeyDown={nameHandleOnKeyDown}
               onFocus={nameHandleFocus}
               onBlur={nameHandleBlur}
@@ -146,6 +128,7 @@ const IntroInput = ({ size }: IntroInputProps) => {
               }`}
               type="text"
               placeholder="Where are you from?"
+              defaultValue={userLocation || ""}
               onKeyDown={locationHandleOnKeyDown}
               onFocus={locationHandleFocus}
               onBlur={locationHandleBlur}
@@ -157,4 +140,4 @@ const IntroInput = ({ size }: IntroInputProps) => {
   );
 };
 
-export default IntroInput;
+export default UserInfoInput;

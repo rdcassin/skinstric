@@ -1,11 +1,10 @@
 import { NextButtonProps } from "./types";
 import NextButtonIcon from "@/public/NextButtonIcon.png";
 import WhiteNextButtonIcon from "@/public/WhiteNextButtonIcon.png";
-import { useIntroStore } from "@/store/use-intro-store";
-import { useOpacityStore } from "@/store/use-nextButtonOpacity-store";
+import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
 
 const NextButton = ({ label, nextAction, invertImage }: NextButtonProps) => {
-  const { opacity } = useOpacityStore();
+  const { opacity } = useNextButtonOpacityStore();
 
   let icon = NextButtonIcon;
 

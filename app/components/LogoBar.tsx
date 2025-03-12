@@ -1,6 +1,6 @@
 const LogoBar = () => {
   return (
-    <nav className="w-full flex items-center gap-x-4 py-6 px-8">
+    <nav className="w-full flex items-center gap-x-4 py-6 px-8 z-10">
       <span className="text-sm font-semibold tracking-[-0.02em]">
         SKINSTRIC
       </span>

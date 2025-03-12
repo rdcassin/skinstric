@@ -1,37 +1,35 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import LogoBar from "../../components/LogoBar";
+import LogoBar from "../../../components/LogoBar";
 import {
   PhotoUploadInput,
   PhotoCameraInput,
-} from "./components/PhotoUploadInput";
+} from "../../../components/PhotoUploadInput";
 import Bar from "@/app/components/Bar";
-import { useOpacityStore } from "@/store/use-nextButtonOpacity-store";
-import { useEffect } from "react";
 import { BarProps } from "@/app/components/types";
 import Subtitle from "@/app/components/Subtitle";
 
 const PhotoUpload = () => {
-  const { setOpacity } = useOpacityStore();
 
   const router = useRouter();
   const barComps: BarProps = {
     subComponent1: {
       label: "BACK",
       prevAction: () => {
-        router.push("/intro/");
+        router.push("/intro");
       },
     },
     subComponent3: {
       label: "PROCEED",
+      nextAction: () => {
+        router.push("/intro/photoUpload/imagePreview");
+      },
     },
   };
 
-  useEffect(() => {
-    setOpacity(true);
-  }, []);
 
+  
   return (
     <div className="flex flex-col justify-between h-screen">
       <div>
