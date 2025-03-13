@@ -11,9 +11,11 @@ import { BarProps } from "@/app/components/types";
 import Subtitle from "@/app/components/Subtitle";
 import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
 import { useImageSourceStore } from "@/store/use-imageSource-store";
+import { usePreviewStore } from "@/store/use-preview-store";
 
 const PhotoUpload = () => {
-  const { selectCapture, selectUpload, setFadeCapture, setFadeUpload } = useImageSourceStore();
+  const { selectCapture, selectUpload, setSelectUpload, setFadeCapture, setFadeUpload } = useImageSourceStore();
+  const { previewUrl } = usePreviewStore();
   const { setOpacity } = useNextButtonOpacityStore();
   const router = useRouter();
   const barComps: BarProps = {
@@ -27,14 +29,15 @@ const PhotoUpload = () => {
     subComponent3: {
       label: "PROCEED",
       nextAction: () => {
-        if (selectUpload) {
+        if (previewUrl) {
           setFadeCapture(true);
+          setSelectUpload(true);
         }
         router.push("/intro/photoUpload/imagePreview");
       },
     },
   };
-  
+
   return (
     <div className="flex flex-col justify-between h-screen">
       <div>

@@ -14,7 +14,7 @@ interface ImageUploadOptionAndActionProps {
 const ImageUploadOptionAndAction = ({ children }: ImageUploadOptionAndActionProps) => {
   const { setUserImage } = useUserInfoStore();
   const { setPreviewUrl } = usePreviewStore();
-  const { setSelectCapture, setSelectUpload, setFadeCapture, setFadeUpload } = useImageSourceStore();
+  const { setSelectUpload, setFadeCapture } = useImageSourceStore();
   const { setOpacity } = useNextButtonOpacityStore();
   const router = useRouter();
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useImageSourceStore } from "@/store/use-imageSource-store";
-import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
 import { useRouter } from "next/navigation";
 import { useState, ReactNode } from "react";
 
@@ -11,11 +10,18 @@ interface ImageCaptureOptionProps {
 
 const ImageCaptureOption = ({ children }: ImageCaptureOptionProps) => {
   const [needAsk, setNeedAsk] = useState<boolean>(false);
-  const { setSelectCapture, setSelectUpload, setFadeCapture, setFadeUpload, camPerm, setCamPerm } = useImageSourceStore();
-  const { setOpacity } = useNextButtonOpacityStore();
+  const {
+    setSelectUpload,
+    setFadeUpload,
+    camPerm,
+  } = useImageSourceStore();
   const router = useRouter();
 
   const handleOnSelected = () => {
+    if (camPerm) {
+      setSelectUpload(false);
+      router.push("/intro/photoUpload/imagePreview");
+    }
     setNeedAsk(true);
     setFadeUpload(true);
   };
@@ -26,7 +32,7 @@ const ImageCaptureOption = ({ children }: ImageCaptureOptionProps) => {
   };
 
   const handleAllow = () => {
-    setOpacity(true);
+    setSelectUpload(false);
     router.push("/intro/photoUpload/imagePreview");
   };
 

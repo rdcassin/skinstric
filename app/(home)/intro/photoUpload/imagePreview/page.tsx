@@ -14,18 +14,37 @@ import { useEffect } from "react";
 
 const ImagePreviewPage = () => {
   const { previewUrl, setPreviewUrl } = usePreviewStore();
-  const { userImage, setUserImage, userData, setUserData } = useUserInfoStore();
-  const { selectCapture, setSelectCapture, selectUpload, setSelectUpload, setFadeCapture, setFadeUpload } = useImageSourceStore();
-  const { setOpacity } = useNextButtonOpacityStore();
+  const { userImage, setUserImage, setUserData } = useUserInfoStore();
+  const {
+    selectCapture,
+    setSelectCapture,
+    selectUpload,
+    setFadeCapture,
+    setFadeUpload,
+    camPerm,
+  } = useImageSourceStore();
+  const { opacity, setOpacity } = useNextButtonOpacityStore();
   const router = useRouter();
   const barComps: BarProps = {
     subComponent1: {
       label: "BACK",
       prevAction: () => {
-        if (selectUpload) {
+        if (selectCapture && camPerm && opacity) {
+          setSelectCapture(false);
+          setOpacity(false);
+        } else if (camPerm && !opacity) {
+          setFadeUpload(false);
+          setFadeCapture(false);
+          setOpacity(true);
+          router.push("/intro/photoUpload");
+        } else if (camPerm) {
+          setFadeUpload(false);
           setFadeCapture(false);
           router.push("/intro/photoUpload");
-        };
+        } else if (selectUpload) {
+          setFadeCapture(false);
+          router.push("/intro/photoUpload");
+        }
       },
       invertImage: true,
     },
@@ -36,7 +55,7 @@ const ImagePreviewPage = () => {
     subComponent3: {
       label: "PROCEED",
       nextAction: () => {
-        // postPicture();
+        postPicture();
         router.push("/analysis");
       },
       invertImage: true,
@@ -61,15 +80,11 @@ const ImagePreviewPage = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-
   return (
     <>
       <div className="w-screen h-screen text-[#FCFCFC] flex flex-col justify-between">
         <LogoBar />
-        {previewUrl ? (
+        {previewUrl && (selectCapture || selectUpload) ? (
           <div className="absolute w-screen h-screen flex items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0">
             <p className="absolute z-10 text-center text-[#FCFCFC] text-sm font-normal top-1/4">
               GREAT SHOT!

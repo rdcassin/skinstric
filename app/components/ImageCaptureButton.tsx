@@ -13,7 +13,7 @@ const ImageCaptureButton = ({ takePicture }: ImageCaptureButtonProps) => {
   return (
     <button
       className={`cursor-pointer flex flex-row transition-opacity ease-in-out duration-300 bg-transparent z-10 text-[#FCFCFC] ${
-        !opacity ? "opacity-0" : "opacity-100"
+        !opacity ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
       onClick={() => takePicture()}
     >
