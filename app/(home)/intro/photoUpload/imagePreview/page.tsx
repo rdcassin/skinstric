@@ -10,7 +10,6 @@ import { usePreviewStore } from "@/store/use-preview-store";
 import { useUserInfoStore } from "@/store/use-userInfo-store";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 const ImagePreviewPage = () => {
   const { previewUrl, setPreviewUrl } = usePreviewStore();
@@ -55,35 +54,16 @@ const ImagePreviewPage = () => {
     subComponent3: {
       label: "PROCEED",
       nextAction: () => {
-        postPicture();
         router.push("/analysis");
       },
       invertImage: true,
     },
   };
 
-  const postPicture = async () => {
-    if (!userImage) return;
-
-    try {
-      const { data } = await axios.post(
-        "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
-        {
-          image: userImage,
-        }
-      );
-      setUserData(data.data);
-    } catch (error) {
-      setUserImage(null);
-      setPreviewUrl(null);
-      console.error("Upload error:", error);
-    }
-  };
-
   return (
     <>
       <div className="w-screen h-screen text-[#FCFCFC] flex flex-col justify-between">
-        <LogoBar />
+        <LogoBar section={opacity? "ANALYSIS" : ""} />
         {previewUrl && (selectCapture || selectUpload) ? (
           <div className="absolute w-screen h-screen flex items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0">
             <p className="absolute z-10 text-center text-[#FCFCFC] text-sm font-normal top-1/4">

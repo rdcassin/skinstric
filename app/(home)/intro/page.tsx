@@ -74,7 +74,7 @@ const IntroPage = () => {
   return (
     <div className="flex flex-col justify-between h-screen">
       <div>
-        <LogoBar />
+        <LogoBar section="INTRO" />
         <Subtitle text="TO START ANALYSIS" />
       </div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

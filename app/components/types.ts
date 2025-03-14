@@ -39,6 +39,7 @@ export interface PrevButtonProps {
 export interface BarCenterContentProps {
   line1: string;
   line2?: string;
+  grey?: boolean;
 }
 
 export interface NextButtonProps {
