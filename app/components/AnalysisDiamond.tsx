@@ -4,7 +4,7 @@ interface AnalysisDiamondProps {
   size: number;
 }
 
-import { useAnalysisAttributeStore } from "@/store/use-analysisAttribute-store copy";
+import { useAnalysisAttributeStore } from "@/store/use-analysisAttribute-store";
 import { DiagonalDottedDiv } from "./DiagonalDottedDiv";
 
 const AnalysisDiamond = ({ size }: AnalysisDiamondProps) => {

@@ -1,29 +1,8 @@
-export interface UserRace {
-  black?: number;
-  white?: number;
-  southeastAsian?: number;
-  southAsian?: number;
-  latinoHispanic?: number;
-  eastAsian?: number;
-  middleEastern?: number;
-}
+export type UserRace = Record<string, number>
 
-export interface UserAge {
-  "20-29"?: number;
-  "30-39"?: number;
-  "40-49"?: number;
-  "10-19"?: number;
-  "50-59"?: number;
-  "3-9"?: number;
-  "60-69"?: number;
-  "70+"?: number;
-  "0-2"?: number;
-}
+export type UserAge = Record<string, number>
 
-export interface UserGender {
-  male?: number;
-  female?: number;
-}
+export type UserGender = Record<string, number>
 export interface UserData {
   race: UserRace;
   age: UserAge;
