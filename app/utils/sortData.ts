@@ -4,32 +4,33 @@ const sortData = (
 ): Record<string, number> => {
   const items = Object.entries(userData);
 
-  items.sort((a, b) => {
-    const keyA = a[0];
-    const keyB = b[0];
-    const valueA = a[1];
-    const valueB = b[1];
+  const ageOrder =
+    [
+      "0-2",
+      "3-9",
+      "10-19",
+      "20-29",
+      "30-39",
+      "40-49",
+      "50-59",
+      "60-69",
+      "70+",
+    ];
 
-    if (isAgeData) {
-      const getAgeRangeStart = (range: string): number => {
-        if (range === "70+") return 70;
-        return parseInt(range.split("-")[0]);
-      };
-
-      const startA = getAgeRangeStart(keyA);
-      const startB = getAgeRangeStart(keyB);
-
-      if (valueB - valueA !== 0) {
-        return valueB - valueA;
+  if (isAgeData) {
+    const sortedAges: Record<string, number> = {};
+    ageOrder.forEach((ageKey) => {
+      if (userData.hasOwnProperty(ageKey)) {
+        sortedAges[ageKey] = userData[ageKey];
       }
-      return startA - startB;
-    } else {
-      return valueB - valueA;
-    }
-  });
+    });
+    return sortedAges;
+  }
+
+  const sortedItems = items.sort(([, aValue], [, bValue]) => bValue - aValue);
 
   const sortedData: Record<string, number> = {};
-  for (const [key, value] of items) {
+  for (const [key, value] of sortedItems) {
     sortedData[key] = value;
   }
 

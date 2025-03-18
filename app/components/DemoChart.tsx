@@ -41,7 +41,7 @@ const DemoChart = () => {
       setChartTitle(fSelGender);
       setChartPercentage(fGenderPercentage);
     }
-  }, [raceProp, ageProp, genderProp, fSelAge, fSelAge, fSelGender]);
+  }, [raceProp, ageProp, genderProp, selRace, selAge, selGender]);
 
   return (
     <>

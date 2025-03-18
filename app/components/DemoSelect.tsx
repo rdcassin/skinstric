@@ -15,8 +15,8 @@ const DemoSelect = () => {
     selGender,
   } = useDemoStore();
 
-  const fSelRace = selRace ? Object.keys({ [selRace ]: '' }).map(key => key.toUpperCase()) : [];
-  const fSelGender = selGender ? Object.keys({ [selGender ]: '' }).map(key => key.toUpperCase()) : [];
+  const fSelRace = selRace ? Object.keys({ [selRace]: '' }).map(key => key.toUpperCase()) : [];
+  const fSelGender = selGender ? Object.keys({ [selGender]: '' }).map(key => key.toUpperCase()) : [];
 
   return (
     <>

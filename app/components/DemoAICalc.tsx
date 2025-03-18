@@ -10,20 +10,33 @@ interface DemoAICalcProps {
 }
 
 const DemoAICalc = ({ races, ages, genders }: DemoAICalcProps) => {
-  const { raceProp, ageProp, genderProp, setSelRace, setSelAge, setSelGender } =
-    useDemoStore();
+  const {
+    raceProp,
+    ageProp,
+    genderProp,
+    selRace,
+    setSelRace,
+    selAge,
+    setSelAge,
+    selGender,
+    setSelGender,
+    tSelRace,
+    setTSelRace,
+    tSelAge,
+    setTSelAge,
+    tSelGender,
+    setTSelGender,
+  } = useDemoStore();
   const [title, setTitle] = useState<string>("RACE");
   const [propDisplay, setPropDisplay] = useState(races);
-  const [selectedKey, setSelectedKey] = useState<string>("");
 
   const handleSelection = (key: string, percentage: number) => {
-    setSelectedKey(key);
     if (raceProp) {
-      setSelRace(key, percentage);
+      setTSelRace(key, percentage);
     } else if (ageProp) {
-      setSelAge(key, percentage);
+      setTSelAge(key, percentage);
     } else if (genderProp) {
-      setSelGender(key, percentage);
+      setTSelGender(key, percentage);
     }
   };
 
@@ -40,6 +53,10 @@ const DemoAICalc = ({ races, ages, genders }: DemoAICalcProps) => {
     }
   }, [raceProp, ageProp, genderProp]);
 
+  useEffect(() => {
+    console.log(tSelRace, tSelAge, tSelGender);
+  }, [tSelRace, tSelAge, tSelGender])
+
   return (
     <>
       <div className="flex flex-row justify-between font-medium w-full h-12 p-4">
@@ -47,26 +64,37 @@ const DemoAICalc = ({ races, ages, genders }: DemoAICalcProps) => {
         <p>A.I. CONFIDENCE</p>
       </div>
       {Object.entries(propDisplay).map(([key, percentage]) => (
-        <div
+        <label
           key={key}
-          className="flex justify-between h-12 p-4 hover:bg-[#E1E1E2] cursor-pointer"
+          className={`flex justify-between h-12 p-4 cursor-pointer w-full ${
+            key === tSelRace || key === tSelAge || key === tSelGender
+              ? "bg-[#1A1B1C] text-[#FCFCFC]"
+              : "hover:bg-[#E1E1E2]"
+          }`}
         >
-          <label className="relative cursor-pointer flex flex-row justify-center items-center gap-x-4">
+          <div className="flex items-center gap-x-4">
             <input
               type="radio"
-              value={selectedKey}
-              checked={selectedKey === key}
+              checked={
+                key === tSelRace || key === tSelAge || key === tSelGender
+              }
               onChange={() => handleSelection(key, percentage)}
               className="sr-only peer"
             />
-            <span className="w-2 h-2 peer-checked:bg-[#FCFCFC] transform rotate-45 border peer-checked:border-[#FCFCFC]"></span>
+            <span
+              className={`w-2 h-2 transform rotate-45 border ${
+                key === tSelRace || key === tSelAge || key === tSelGender
+                  ? "bg-[#FCFCFC] border-[#FCFCFC]"
+                  : "peer-checked:bg-[#FCFCFC] peer-checked:border-[#FCFCFC]"
+              }`}
+            ></span>
             {key
               .split(" ")
               .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
               .join(" ")}
-            <p>{`${Math.round(percentage * 100)} %`}</p>
-          </label>
-        </div>
+          </div>
+          <p>{`${Math.round(percentage * 100)} %`}</p>
+        </label>
       ))}
     </>
   );

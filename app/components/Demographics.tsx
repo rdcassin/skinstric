@@ -2,7 +2,7 @@
 
 import { useUserInfoStore } from "@/store/use-userInfo-store";
 import sortData from "../utils/sortData";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import DemoSelect from "./DemoSelect";
@@ -25,6 +25,15 @@ const Demographics = () => {
     setSelAge,
     selGender,
     setSelGender,
+    tSelRace,
+    setTSelRace,
+    tSelAge,
+    setTSelAge,
+    tSelGender,
+    setTSelGender,
+    setISelRace,
+    setISelAge,
+    setISelGender
   } = useDemoStore();
 
   const userData = {
@@ -59,10 +68,35 @@ const Demographics = () => {
   const genders = sortData(userData.gender);
 
   useEffect(() => {
-    setSelRace(Object.keys(races)[0], Object.values(races)[0]);
-    setSelAge(Object.keys(ages)[0], Object.values(ages)[0]);
-    setSelGender(Object.keys(genders)[0], Object.values(genders)[0]);
-  }, [setSelRace, setSelAge, setSelGender]);
+    if (!selRace) {
+      setSelRace(Object.keys(races)[0], Object.values(races)[0]);
+      setTSelRace(Object.keys(races)[0], Object.values(races)[0]);
+      setISelRace(Object.keys(races)[0], Object.values(races)[0]);
+    }
+
+    if (!selAge) {
+      let maxAgeKey = "";
+      let maxAgeValue = -Infinity;
+
+      for (const key in ages) {
+        if (ages[key] > maxAgeValue) {
+          maxAgeValue = ages[key];
+          maxAgeKey = key;
+        }
+      }
+      if (maxAgeKey) {
+        setSelAge(maxAgeKey, maxAgeValue);
+        setTSelAge(maxAgeKey, maxAgeValue);
+        setISelAge(maxAgeKey, maxAgeValue);
+      }
+    }
+
+    if (!selGender) {
+      setSelGender(Object.keys(genders)[0], Object.values(genders)[0]);
+      setTSelGender(Object.keys(genders)[0], Object.values(genders)[0]);
+      setISelGender(Object.keys(genders)[0], Object.values(genders)[0]);
+    }
+  }, []);
 
   return (
     <div className="p-8 flex flex-row gap-x-4 h-full mt-12">

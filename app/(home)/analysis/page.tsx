@@ -15,6 +15,7 @@ import { useDemoStore } from "@/store/use-demo-store";
 import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
 import { useUserInfoStore } from "@/store/use-userInfo-store";
 import axios from "axios";
+import { selector } from "gsap";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -31,7 +32,35 @@ const AnalysisPage = () => {
     weather,
     setWeather,
   } = useAnalysisAttributeStore();
-  const { raceProp, ageProp, genderProp } = useDemoStore();
+  const {
+    raceProp,
+    ageProp,
+    genderProp,
+    setSelRace,
+    selRace,
+    racePercentage,
+    setSelAge,
+    selAge,
+    agePercentage,
+    setSelGender,
+    selGender,
+    genderPercentage,
+    tSelRace,
+    tRacePercentage,
+    setTSelRace,
+    tSelAge,
+    tAgePercentage,
+    setTSelAge,
+    tSelGender,
+    tGenderPercentage,
+    setTSelGender,
+    iSelRace,
+    iRacePercentage,
+    iSelAge,
+    iAgePercentage,
+    iSelGender,
+    iGenderPercentage,
+  } = useDemoStore();
   const { setOpacity } = useNextButtonOpacityStore();
   const router = useRouter();
   let choseTitle = "";
@@ -46,6 +75,9 @@ const AnalysisPage = () => {
           setCosCon(false);
           setSkinDet(false);
           setWeather(false);
+          setTSelRace(selRace, racePercentage);
+          setTSelAge(selAge, agePercentage);
+          setTSelGender(selGender, genderPercentage);
         } else {
           router.push("/intro/photoUpload/imagePreview");
         }
@@ -58,6 +90,31 @@ const AnalysisPage = () => {
     subComponent3: {
       label: "GET SUMMARY",
       nextAction: () => {},
+    },
+    subComponent4: {
+      label1: "RESET",
+      action1: () => {
+        if (raceProp) {
+          setSelRace(iSelRace, iRacePercentage);
+          setTSelRace(iSelRace, iRacePercentage);
+        } else if (ageProp) {
+          setSelAge(iSelAge, iAgePercentage);
+          setTSelAge(iSelAge, iAgePercentage);
+        } else if (genderProp) {
+          setSelGender(iSelGender, iGenderPercentage);
+          setTSelGender(iSelGender, iGenderPercentage);
+        }
+      },
+      label2: "CONFIRM",
+      action2: () => {
+        if (raceProp && tSelRace) {
+          setSelRace(tSelRace, tRacePercentage);
+        } else if (ageProp && tSelAge) {
+          setSelAge(tSelAge, tAgePercentage);
+        } else if (genderProp && tSelGender) {
+          setSelGender(tSelGender, tGenderPercentage);
+        }
+      },
     },
   };
 
@@ -154,7 +211,16 @@ const AnalysisPage = () => {
                 ? barComps.subComponent2
                 : undefined
             }
-            subComponent3={barComps.subComponent3}
+            subComponent3={
+              demo || cosCon || skinDet || weather
+                ? undefined
+                : barComps.subComponent3
+            }
+            subComponent4={
+              demo || cosCon || skinDet || weather
+                ? barComps.subComponent4
+                : undefined
+            }
           />
         </div>
       )}
