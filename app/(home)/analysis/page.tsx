@@ -15,7 +15,6 @@ import { useDemoStore } from "@/store/use-demo-store";
 import { useNextButtonOpacityStore } from "@/store/use-nextButtonOpacity-store";
 import { useUserInfoStore } from "@/store/use-userInfo-store";
 import axios from "axios";
-import { selector } from "gsap";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -181,7 +180,7 @@ const AnalysisPage = () => {
 
   return (
     <>
-      {false ? (
+      {loading ? (
         <AnalysisLoading />
       ) : (
         <div className="flex flex-col justify-between h-screen">

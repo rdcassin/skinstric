@@ -2,8 +2,7 @@
 
 import { useUserInfoStore } from "@/store/use-userInfo-store";
 import sortData from "../utils/sortData";
-import { use, useEffect, useState } from "react";
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import { useEffect } from "react";
 import "react-circular-progressbar/dist/styles.css";
 import DemoSelect from "./DemoSelect";
 import { useDemoStore } from "@/store/use-demo-store";
@@ -13,23 +12,14 @@ import DemoAICalc from "./DemoAICalc";
 const Demographics = () => {
   //   const { userData } = useUserInfoStore();
   const {
-    raceProp,
-    setRaceProp,
-    ageProp,
-    setAgeProp,
-    genderProp,
-    setGenderProp,
     selRace,
     setSelRace,
     selAge,
     setSelAge,
     selGender,
     setSelGender,
-    tSelRace,
     setTSelRace,
-    tSelAge,
     setTSelAge,
-    tSelGender,
     setTSelGender,
     setISelRace,
     setISelAge,
