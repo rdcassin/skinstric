@@ -131,7 +131,6 @@ const AnalysisPage = () => {
       );
       setUserData(data.data);
       setLoading(false);
-      console.log(data.data);
     } catch (error) {
       console.error("Upload error:", error);
     }

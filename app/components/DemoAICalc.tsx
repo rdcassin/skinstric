@@ -53,10 +53,6 @@ const DemoAICalc = ({ races, ages, genders }: DemoAICalcProps) => {
     }
   }, [raceProp, ageProp, genderProp]);
 
-  useEffect(() => {
-    console.log(tSelRace, tSelAge, tSelGender);
-  }, [tSelRace, tSelAge, tSelGender])
-
   return (
     <>
       <div className="flex flex-row justify-between font-medium w-full h-12 p-4">

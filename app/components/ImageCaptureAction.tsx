@@ -89,7 +89,6 @@ const ImageCaptureAction = () => {
             ref={videoRef}
             autoPlay
             className="h-screen w-screen object-cover"
-            // style={{ display: previewUrl ? "none" : "block" }}
           ></video>
           <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
           <div className="absolute top-1/2 right-8">
