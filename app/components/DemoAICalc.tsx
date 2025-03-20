@@ -49,14 +49,14 @@ const DemoAICalc = ({ races, ages, genders }: DemoAICalcProps) => {
 
   return (
     <>
-      <div className="flex flex-row justify-between font-medium w-full h-12 p-4">
+      <div className="flex flex-row justify-between font-medium w-full h-12 p-4 lg:text-base text-xs">
         <p>{title}</p>
         <p>A.I. CONFIDENCE</p>
       </div>
       {Object.entries(propDisplay).map(([key, percentage]) => (
         <label
           key={key}
-          className={`flex justify-between h-12 p-4 cursor-pointer w-full ${
+          className={`flex justify-between items-center h-12 p-4 cursor-pointer w-full lg:text-base text-xs ${
             key === tSelRace || key === tSelAge || key === tSelGender
               ? "bg-[#1A1B1C] text-[#FCFCFC]"
               : "hover:bg-[#E1E1E2]"
@@ -83,7 +83,7 @@ const DemoAICalc = ({ races, ages, genders }: DemoAICalcProps) => {
               .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
               .join(" ")}
           </div>
-          <p>{`${Math.round(percentage * 100)} %`}</p>
+          <p className="lg:text-base text-xs">{`${Math.round(percentage * 100)} %`}</p>
         </label>
       ))}
     </>

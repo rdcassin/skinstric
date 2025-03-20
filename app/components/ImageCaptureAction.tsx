@@ -47,6 +47,10 @@ const ImageCaptureAction = () => {
           console.error("Error stopping track: ", error);
         }
       });
+      setStreaming(undefined);
+    }
+    if(videoRef.current){
+        videoRef.current.srcObject = null;
     }
   };
 

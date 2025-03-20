@@ -21,7 +21,7 @@ const DemoSelect = () => {
   return (
     <>
       <div
-        className={`w-full h-26 flex flex-col justify-between mb-2 px-4 py-3 tracking-[-0.02em] font-semibold border-t-1 cursor-pointer ${
+        className={`w-full h-26 flex flex-col justify-between mb-2 px-4 py-3 tracking-[-0.02em] font-semibold border-t-1 cursor-pointer lg:text-base text-xs ${
           raceProp
             ? "bg-[#1A1B1C] text-[#FCFCFC]"
             : "bg-[#F3F3F4] hover:bg-[#E1E1E2]"
@@ -32,7 +32,7 @@ const DemoSelect = () => {
         <p>RACE</p>
       </div>
       <div
-        className={`w-full h-26 flex flex-col justify-between mb-2 px-4 py-3 tracking-[-0.02em] font-semibold border-t-1 cursor-pointer ${
+        className={`w-full h-26 flex flex-col justify-between mb-2 px-4 py-3 tracking-[-0.02em] font-semibold border-t-1 cursor-pointer lg:text-base text-xs ${
           ageProp
             ? "bg-[#1A1B1C] text-[#FCFCFC]"
             : "bg-[#F3F3F4] hover:bg-[#E1E1E2]"
@@ -43,7 +43,7 @@ const DemoSelect = () => {
         <p>AGE</p>
       </div>
       <div
-        className={`w-full h-26 flex flex-col justify-between mb-2 px-4 py-3 tracking-[-0.02em] font-semibold border-t-1 cursor-pointer ${
+        className={`w-full h-26 flex flex-col justify-between mb-2 px-4 py-3 tracking-[-0.02em] font-semibold border-t-1 cursor-pointer lg:text-base text-xs ${
           genderProp
             ? "bg-[#1A1B1C] text-[#FCFCFC]"
             : "bg-[#F3F3F4] hover:bg-[#E1E1E2]"

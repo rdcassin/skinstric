@@ -44,7 +44,7 @@ const PhotoUpload = () => {
         <LogoBar section="INTRO" />
         <Subtitle text="TO START ANALYSIS" />
       </div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-x-90">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-x-90 xl:flex">
         <PhotoCameraInput size={400} />
         <PhotoUploadInput size={400} />
       </div>

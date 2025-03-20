@@ -45,10 +45,10 @@ const DemoChart = () => {
 
   return (
     <>
-      <div className="text-5xl w-1/2">{`${chartTitle}`}</div>
-      <div className="w-1/2 flex justify-end items-end">
+      <div className="lg:text-5xl xl:w-1/2 text-4xl">{`${chartTitle}`}</div>
+      <div className="xl:w-1/2 flex justify-end items-end">
         <CircularProgressbar
-          className="h-3/4"
+          className="xl:h-3/4"
           value={chartPercentage}
           text={`${Math.round(chartPercentage)}%`}
           strokeWidth={1}

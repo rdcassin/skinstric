@@ -11,14 +11,14 @@ const LandingContent = () => {
   return (
     <div className="flex flex-col justify-center h-screen px-8 relative">
       <h1
-        className={`text-9xl font-light transition-all duration-1200 ease-in-out text-center tracking-[-0.07em] ${
+        className={`xl:text-9xl text-8xl font-light transition-all duration-1200 ease-in-out text-center tracking-[-0.07em] ${
           isHovering ? "w-0" : "w-full"
         }`}
       >
         Sophisticated
       </h1>
       <h1
-        className={`text-9xl font-light transition-all duration-1000 ease-in-out text-center tracking-[-0.02em] ${
+        className={`xl:text-9xl text-8xl font-light transition-all duration-1000 ease-in-out text-center tracking-[-0.02em] ${
           isHovering ? "w-0" : "w-full"
         }`}
       >

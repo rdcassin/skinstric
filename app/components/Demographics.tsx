@@ -93,7 +93,7 @@ const Demographics = () => {
       <div className="w-[11%]">
         <DemoSelect />
       </div>
-      <div className="w-[63%] h-full flex flex-row justify-between border-t-1 tracking-[-0.05em] bg-[#F3F3F4] px-4 py-5">
+      <div className="w-[63%] h-full flex xl:flex-row flex-col justify-between border-t-1 tracking-[-0.05em] bg-[#F3F3F4] px-4 py-5">
         <DemoChart />
       </div>
       <div className="w-[25%] h-full border-t-1 tracking-[-0.02em] bg-[#F3F3F4]">
