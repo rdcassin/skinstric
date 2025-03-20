@@ -174,7 +174,7 @@ const AnalysisPage = () => {
   };
 
   useEffect(() => {
-    // postPicture();
+    postPicture();
     setOpacity(true);
   }, []);
 
