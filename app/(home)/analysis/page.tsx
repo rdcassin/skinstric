@@ -180,7 +180,7 @@ const AnalysisPage = () => {
 
   return (
     <>
-      {false ? (
+      {loading ? (
         <AnalysisLoading />
       ) : (
         <div className="flex flex-col justify-between h-screen">

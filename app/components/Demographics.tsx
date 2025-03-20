@@ -10,7 +10,7 @@ import DemoChart from "./DemoChart";
 import DemoAICalc from "./DemoAICalc";
 
 const Demographics = () => {
-  //   const { userData } = useUserInfoStore();
+  const { userData } = useUserInfoStore();
   const {
     selRace,
     setSelRace,
@@ -26,32 +26,32 @@ const Demographics = () => {
     setISelGender
   } = useDemoStore();
 
-  const userData = {
-    race: {
-      black: 0.0004102313,
-      white: 0.0010931309,
-      "southeast asian": 0.0024870074,
-      "south asian": 0.0002568607,
-      "latino hispanic": 0.0051376893,
-      "east asian": 0.9896765168,
-      "middle eastern": 0.0009385636,
-    },
-    age: {
-      "0-2": 0.0122983524,
-      "3-9": 0.7352932234,
-      "20-29": 0.0059112756,
-      "30-39": 0.0075004672,
-      "40-49": 0.2125422923,
-      "10-19": 0.0117241061,
-      "50-59": 0.0058556294,
-      "60-69": 0.0030211923,
-      "70+": 0.0058534613,
-    },
-    gender: {
-      male: 0.4468851605,
-      female: 0.5531148395,
-    },
-  };
+  // const userData = {
+  //   race: {
+  //     black: 0.0004102313,
+  //     white: 0.0010931309,
+  //     "southeast asian": 0.0024870074,
+  //     "south asian": 0.0002568607,
+  //     "latino hispanic": 0.0051376893,
+  //     "east asian": 0.9896765168,
+  //     "middle eastern": 0.0009385636,
+  //   },
+  //   age: {
+  //     "0-2": 0.0122983524,
+  //     "3-9": 0.7352932234,
+  //     "20-29": 0.0059112756,
+  //     "30-39": 0.0075004672,
+  //     "40-49": 0.2125422923,
+  //     "10-19": 0.0117241061,
+  //     "50-59": 0.0058556294,
+  //     "60-69": 0.0030211923,
+  //     "70+": 0.0058534613,
+  //   },
+  //   gender: {
+  //     male: 0.4468851605,
+  //     female: 0.5531148395,
+  //   },
+  // };
 
   const races = sortData(userData.race);
   const ages = sortData(userData.age, true);
